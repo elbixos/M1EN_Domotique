@@ -1,0 +1,6 @@
+#!/bin/sh
+
+ls | egrep '(^cours*)' | \
+perl -e 'while(<>) { chop $_; print "- [$_](./$_)\n";}' > index.md
+
+#perl -e 'print "<html><body><ul>"; while(<>) { chop $_; print "<li><a href=\"./$_\">$_</a></li>";} print "</ul></body></html>"' > index.html
