@@ -38,7 +38,29 @@ boursière, la pollution, les alertes Google ou encore des « envois de messages
 de couleurs » par SMS ou courriel.
 ```
 
+Dans la pratique, on voit donc qu'un objet connecté, c'est avant tout :
+
+- un circuit électronique
+- dont les actions sont programmables
+- qui peut dialoguer sur un réseau (local ou global)
+
+A terme, lors des Travaux Pratiques, nous souhaiterions mettre en place
+un équipement dans les salles de TP permettant de contrôler
+
+- la clim
+- l'éclairage
+- des brasseurs d'air
+
+Tout ceci serait contrôlable depuis un **smartphone**, via un serveur.
+Le serveur serait, lui, hébergé sur un **raspberry**.
+
+Si certains de ces mots vous échappent pour le moment, ce n'est pas grave,
+on va voir cela calmement.
+
+Mais pour faire tout cela, il va nous falloir quelques notions, et pour
+commencer, quelques notions sur les **circuits électroniques programmables**.
 
 ___
 Vous pouvez repartir vers le [Sommaire](99_sommaire.md)
+
 ___
