@@ -93,7 +93,7 @@ La **loop** pourrait consister a dire :
 
 Tout ceci se retrouve dans le programme qui suit :
 
-```C
+```c
 int brocheLed = 4
 
 // the setup function runs once when you press reset or power the board
