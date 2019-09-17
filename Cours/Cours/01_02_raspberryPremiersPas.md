@@ -99,7 +99,9 @@ Voyons donc le programme complet, qui suit exactement celui que nous avions
 fait pour l'arduino avec quelques petites modifications :
 
 1. On specifie quelle broche est utilisée
+
 2. Puis indéfinimement
+
   1. On allume la diode
   2. On attend 1s
   3. On eteind la diode
