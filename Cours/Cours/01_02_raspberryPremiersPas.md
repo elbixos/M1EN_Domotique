@@ -93,7 +93,7 @@ qui compose son nom de GPIO (14).
 
 Voici le schéma de montage complet. La masse est prise sur la broche physique 6, la broche physique 8 est utilisée pour l'anode (positif) de la LED.
 
-![schema LED](blinkingLed.jpg)
+![schema LED](blinkingLED.jpg)
 
 Voyons donc le programme complet, qui suit exactement celui que nous avions
 fait pour l'arduino avec quelques petites modifications :
