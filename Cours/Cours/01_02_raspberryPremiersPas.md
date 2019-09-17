@@ -111,13 +111,13 @@ Tout d'abord, il faut dire à python que nous souhaitons utiliser la fonction
 seconde). Cette fonction est disponible dans le **module** *time*, que notre
 programme doit importer avec la ligne qui suit :
 
-```Python
+```python
 import time
 ```
 
 A partir de cette ligne, la fonction *sleep* pourrait être appelée
 en tapant :
-```Python
+```python
 time.sleep(1)
 ```
 
@@ -128,21 +128,21 @@ de dire qu'une broche va être utilisée en entrée ou en sortie.
 On pourait donc importer le module *RPi.GPIO* comme nous l'avons fait pour
 le module *time*, mais il faudrait alors apppeler la fonction *setup* comme
 suit :
-```Python
+```python
 RPi.GPIO.setup(.....)
 ```
 Pour simplifier un peu notre programme, nous allons donc importer le module
 *RPi.GPIO* en lui donnant un alias (ici *GPIO*) comme suit.
-```Python
+```python
 import RPi.GPIO as GPIO    # Import Raspberry Pi GPIO library
 ```
 Si je veux utiliser la fonction *setup*, je taperais maintenant :
-```Python
+```python
 GPIO.setup(.....)
 ```
 Donc pour le moment, nous avons seulement importé nos deux modules
 et notre programme ne contient que deux lignes :
-```Python
+```python
 import RPi.GPIO as GPIO    # Import Raspberry Pi GPIO library
 import time     # Import the time module for the sleep function
 ```
@@ -152,11 +152,11 @@ Ajoutons deux lignes pour lui dire que nous utilisons la broche physique 8,
 programme que nous utilisons la numérotation physique des broches (pas son
 numéro de GPIO)
 
-```Python
+```python
 GPIO.setmode(GPIO.BOARD)   # Use physical pin numbering
 ```
 Puis on désigne la broche 8 comme broche de sortie :
-```Python
+```python
 GPIO.setup(8, GPIO.OUT, initial=GPIO.LOW)
 ```
 
@@ -166,7 +166,7 @@ Pour la suite, notre programme doit tourner en boucle indéfiniment,
 ce que l'on va faire ici avec une boucle *while*, contenant les 4 étapes
 (allume / attend / Eteint / attend)
 
-```Python
+```python
 while True: # Run forever
     GPIO.output(8, GPIO.HIGH) # Turn on
     time.sleep(1)             # Sleep for 1 second
@@ -178,7 +178,7 @@ Le programme complet figure ci dessous.
 Il est également téléchargeable dans le répertoire [Sources](../Sources/)
 de ce site. Il s'agit du fichier [blinkBoard.py](../Sources/blinkBoard.py).
 
-```Python
+```python
 import RPi.GPIO as GPIO    # Import Raspberry Pi GPIO library
 import time     # Import the time module for the sleep function
 
@@ -201,7 +201,7 @@ Pour raffiner un petit peu, j'aurais tendance à définir une variable
 pour contenir le numéro de la broche de la diode (si je veux modifier,
 ce sera plus simple). Mon programme deviendrait :
 
-```Python
+```python
 import RPi.GPIO as GPIO    # Import Raspberry Pi GPIO library
 import time     # Import the time module for the sleep function
 
@@ -223,7 +223,7 @@ la durée totale d'un cycle (ici, 2 secondes) ce qui me permettrait de faire
 clignoter ma diode plus ou moins vite. La diode reste allumée la moitié
 d'un cycle puis éteinte la moitié d'un cycle. Mon programme deviendrait :
 
-```Python
+```python
 import RPi.GPIO as GPIO    # Import Raspberry Pi GPIO library
 import time     # Import the time module for the sleep function
 
@@ -253,7 +253,7 @@ de type CTRL C arrive, libère les broches.
 
 Le programme complet serait alors, disponible ici : [blinkBoardClean.py](../Sources/blinkBoardClean.py)
 
-```Python
+```python
 import RPi.GPIO as GPIO    # Import Raspberry Pi GPIO library
 import time     # Import the time module for the sleep function
 
