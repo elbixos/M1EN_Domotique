@@ -9,8 +9,10 @@ vous pouvez suivre [ce lien](Cours/README.md).
 
 Pour le moment, j'ai rédigé :
 
-- Une partie du Cours 1
+- le Cours 1
+    - l'Introduction (~Ok)
+    - la présentation des arduino (Ajouter schéma de cablage)
+    - les Raspberry Pi (~ok)
 
-    - l'Introduction
-    - la présentation des arduino
-    - Je vais bosser ce soir sur les Raspberry Pi
+A faire :
+Ajouter le plan du prochain cours.
