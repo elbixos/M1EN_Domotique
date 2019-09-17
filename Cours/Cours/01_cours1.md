@@ -393,6 +393,6 @@ except KeyboardInterrupt:
 Et voila !
 
 ___
-Vous pouvez repartir vers le [Sommaire](Cours/99_sommaire.md)
+Vous pouvez repartir vers le [Sommaire](99_sommaire.md)
 
 ___
