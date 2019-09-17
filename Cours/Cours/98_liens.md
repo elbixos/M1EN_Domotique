@@ -21,8 +21,3 @@ J'aurais tendance à louer son côté très complet, tout en lui reprochant de n
 
 ### Autres ressources
 Si vous trouvez d'autres ressources utiles, n'hésitez pas à m'en faire part, je pourrais les ajouter...
-
-
-___
-Vous pouvez repartir vers le [Sommaire](99_sommaire.md)
-___
