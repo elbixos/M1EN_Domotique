@@ -12,9 +12,14 @@ freq = 100 # en Hz
 pwm = GPIO.PWM(ledpin, freq)   # Initialize PWM on pwmPin 100Hz frequency
 
 dc = 0
+step = +1
 
 while True :
     print ("duty cycle",dc)
     pwm.ChangeDutyCycle(dc)
-    dc+= 1
+    dc+= step
+
+    if dc >= 100 or dc <= 0:
+      step *= -1
+
     time.sleep(0.1)
