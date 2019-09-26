@@ -14,5 +14,9 @@ Pour le moment, j'ai rédigé :
     - la présentation des arduino (Ajouter schéma de cablage)
     - les Raspberry Pi (~ok)
 
+- Le Cours 2
+  - SSH
+  - PWM (en cours)
+
 A faire :
 Ajouter le plan du prochain cours.
