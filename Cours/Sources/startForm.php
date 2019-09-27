@@ -6,6 +6,8 @@
 </head>
 
 <body>
-    Je suis une page Web minimaliste.
+  <form action="startLed.php" method="post">
+    <button type="submit">Envoyer le message</button>
+  </form>
 </body>
 </html>
