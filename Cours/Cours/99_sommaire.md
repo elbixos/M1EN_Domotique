@@ -3,6 +3,7 @@
 - [Introduction](00_intro.md)
 - [Cours1](01_cours1.md)
 - [Cours2](02_cours2.md)
+- [Cours2](03_cours3.md)
 
 - [Liens utiles](98_liens.md)
 
