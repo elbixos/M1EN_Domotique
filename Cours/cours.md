@@ -850,6 +850,7 @@ Le code complet de ce programme est ici :
 [../Sources/BlinkPwm02.py](../Sources/BlinkPwm03.py)
 
 C'est tout pour le cours 2.
+## Une application Web minimaliste
 ## Quelques liens externes concernant python.
 
 Le problème quand on enseigne l'informatique (ou quoi que ce soit d'autre), est d'adapter son discours a son public. Ce que je propose dans ce cours est un kit de survie pour l'algorithmique et la programmation utile pour tout ingénieur.

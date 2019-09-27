@@ -5,4 +5,7 @@
 - [blinkPwm02.py](./blinkPwm02.py)
 - [blinkPwm03.py](./blinkPwm03.py)
 - [blinkPwm04.py](./blinkPwm04.py)
+- [client.py](./client.py)
 - [index.md](./index.md)
+- [server.py](./server.py)
+- [test.py](./test.py)
