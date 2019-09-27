@@ -1,2 +1,3 @@
 - [01_cours1.md](./01_cours1.md)
 - [02_cours2.md](./02_cours2.md)
+- [03_cours3.md](./03_cours3.md)
