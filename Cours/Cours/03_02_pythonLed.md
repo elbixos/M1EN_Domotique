@@ -240,3 +240,4 @@ Voici le code complet de la page
 ### Rendons cela joli !
 
 On fera des CSS pour améliorer l'aspect visuel.
+Mais je n'ai pas eu le temps.
