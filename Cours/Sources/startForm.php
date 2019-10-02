@@ -7,7 +7,7 @@
 
 <body>
   <form action="startLed.php" method="post">
-    <button type="submit">Envoyer le message</button>
+    <button type="submit" id="submit" name="submit">Envoyer le message</button>
   </form>
 </body>
 </html>
