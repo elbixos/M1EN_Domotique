@@ -1,6 +1,8 @@
 - [blinkBoardClean.py](./blinkBoardClean.py)
 - [blinkBoard.py](./blinkBoard.py)
 - [Blink.ino](./Blink.ino)
+- [blinkLedThread.py](./blinkLedThread.py)
+- [blinkPrint.py](./blinkPrint.py)
 - [blinkPwm01.py](./blinkPwm01.py)
 - [blinkPwm02.py](./blinkPwm02.py)
 - [blinkPwm03.py](./blinkPwm03.py)
