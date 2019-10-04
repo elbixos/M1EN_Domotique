@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
+
 import socket
 import sys
 
-# -*- coding: utf-8 -*-
+
 import time
 import threading
 import RPi.GPIO as GPIO    # Import Raspberry Pi GPIO library
@@ -30,7 +32,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Bind the socket to the port
 server_address = ("127.0.0.1", 10000)
-print >>sys.stderr, 'starting up on %s port %s' % server_address
+print ('starting up on port',server_address)
 sock.bind(server_address)
 
 # Listen for incoming connections
@@ -38,16 +40,18 @@ sock.listen(1)
 print ("waiting")
 
 while True:
-  print >>sys.stderr, 'waiting for a connection'
+  print ('waiting for a connection')
   connection, client_address = sock.accept()
 
   try:
-    print >>sys.stderr, 'connection from', client_address
+    print ('connection from', client_address)
 
-    data = connection.recv(256)
-    print >>sys.stderr, 'received "%s"' % data
+    data = connection.recv(256).decode("Utf8")
+    print ('received ', data)
 
     dataSplit = data.split()
+    ordre = dataSplit[0]
+    print(ordre)
     freq = float(dataSplit[1]) # en Hz
     print ("frequence", freq)
 
@@ -57,10 +61,8 @@ while True:
         monThread = threading.Thread(target=clignoter, args=(ledpin,))
         monThread.start()
 
-
-
   except Exception as ex:
-    print ex
+    print (ex)
     clignote = False
     GPIO.cleanup()       # clean up GPIO on CTRL+C exit
 
