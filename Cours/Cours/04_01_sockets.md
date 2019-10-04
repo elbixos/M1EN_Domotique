@@ -1,5 +1,7 @@
 ## Amélioration de la gestion des LED
 
+### Introduction
+
 Ici, nous voulons que l'on puisse, par exemple,
 faire clignoter une diode avec une fréquence définie.
 
@@ -32,3 +34,64 @@ que lancer du python.
 Ceci nécessite deux ou trois nouvelles petites choses,
 telles que des **sockets** et des **threads**...
 Mais avant cela, préparons le fichier Php
+
+### Code PHP
+
+Reprenons le code précédent vu auparavant, que l'on adapte
+puisque son nom est *useLed.php* et qu'il appelle le fichier
+python *clientLed.py*. J'ai également ajouté un titre de niveau 1
+dans la page page (Gestion de Led)
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Une page de test </title>
+</head>
+
+<body>
+  <h1> Gestion de LED </h1>
+  <form action="useLed.php" method="post">
+    <button type="submit" id="submit" name="submit">Allumer</button>
+  </form>
+
+  <?php
+  if (isset($_POST["submit"])){
+      $command = escapeshellcmd('python3 clientLed.py');
+      $output = shell_exec($command);
+
+      echo "<p>";
+      echo $output;
+      echo </p>
+  }
+  ?>
+</body>
+</html>
+```
+
+Ajoutons dans le formulaire un champ pour la fréquence :
+
+- On ajoute un paragraphe pour bien séparer les champs. Ceci grâce à la balise \<p\>,
+- on ajoute un label pour écrire "Fréquence" devant le champ.
+- on ajoute le champ *freq* pour que l'utilisateur puisse entrer
+un nombre.
+
+Voici le code du formulaire, qui remplace l'ancien :
+
+```
+<form action="useLed.php" method="post">
+
+  <p>
+    <label for="freq">Fréquence</label>
+    <input type="number" name="freq" id="freq" />
+ </p>
+   <button type="submit" id="submit" name="submit">Clignoter</button>
+
+</form>
+
+```
+
+On vérifie que l'affichage fonctionne :
+
+![gestion Led 1](gestionLed1.png)

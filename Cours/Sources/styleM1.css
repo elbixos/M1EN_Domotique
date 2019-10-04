@@ -1,0 +1,74 @@
+/* On travaille sur la balise body, donc sur TOUTE la page */
+body
+{
+    background-color: black; /* Le fond de la page sera noir */
+    color: white; /* Le texte de la page sera blanc */
+}
+
+h1{
+  font-size: 32px;
+  color: #999999;
+  text-align: center;
+}
+
+form
+{
+	max-width: 500px;
+	padding: 10px 20px;
+	background: #f4f7f8;
+	margin: 10px auto;
+	padding: 20px;
+	background: #f4f7f8;
+	border-radius: 8px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+
+label {
+	display: block;
+  float : left;
+	margin-bottom: 8px;
+  margin-top : 10px;
+  color: #999999;
+  width: 100px;
+  font-weight: bold;
+	font-size: 13px;
+	text-shadow: 1px 1px 1px #fff;
+}
+
+
+input[type="number"] {
+	background: #1abc9c;
+	color: #fff;
+	height: 30px;
+	width: 100px;
+	display: inline-block;
+	font-size: 0.8em;
+	margin-right: 4px;
+	line-height: 30px;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+	border-radius: 15px 15px 15px 0px;
+}
+
+button[type="submit"]
+{
+	position: relative;
+	display: block;
+	padding: 19px 39px 18px 39px;
+	color: #FFF;
+	margin: 0 auto;
+	background: #1abc9c;
+	font-size: 18px;
+	text-align: center;
+	font-style: normal;
+	width: 100%;
+	border: 1px solid #16a085;
+	border-width: 1px 1px 3px;
+	margin-bottom: 10px;
+}
+
+button[type="submit"]:hover
+{
+	background: #109177;
+}
