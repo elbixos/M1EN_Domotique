@@ -95,3 +95,41 @@ Voici le code du formulaire, qui remplace l'ancien :
 On vérifie que l'affichage fonctionne :
 
 ![gestion Led 1](gestionLed1.png)
+
+
+Ajoutons que le script Php doit récupérer la valeur de la fréquence
+qu'il recoit du formulaire, et la transmettre au programme python qu'il lance.
+
+Pour récuperer cette valeur, on regarde dans *\$_POST*
+```
+$frequence = $_POST["submit"]
+```
+
+Pour transmettre cela au programme python qu'on lance,
+il faut que la commande devienne :
+```
+python3 clientLed.py $frequence
+```
+
+je vais changer les simples guillemets du programme précédent
+par des doubles, ce qui va permettre a PHP de remplacer *\$frequence*
+par sa valeur
+```
+<?php
+
+if (isset($_POST["submit"])){
+    $frequence = $_POST["submit"];
+
+    $command = escapeshellcmd("python3 clientLed.py $frequence");
+    $output = shell_exec($command);
+```
+
+Pour vérifier, on va faire un programme python *clientLed.py* tout bête qui
+affiche la valeur du paramètre avec lequel il est lancé.
+
+```
+import sys
+
+freq = sys.argv[1]
+print ("Je suis python, vous voulez une fréquence de :", freq)
+```

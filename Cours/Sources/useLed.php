@@ -22,7 +22,7 @@
   <?php
   if (isset($_POST["submit"])){
       $frequence = $_POST["freq"];
-      $command = escapeshellcmd("python3 clientLed.py $frequence");
+      $command = escapeshellcmd("python3 testArg.py $frequence");
       $output = shell_exec($command);
 
       echo "<p>";
