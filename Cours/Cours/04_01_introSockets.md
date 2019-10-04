@@ -133,3 +133,7 @@ import sys
 freq = sys.argv[1]
 print ("Je suis python, vous voulez une fréquence de :", freq)
 ```
+
+Ceci nous permettra d'avoir ce type de choses :
+
+![gestion Led 2](gestionLed2.png)
