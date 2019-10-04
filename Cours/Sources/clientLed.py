@@ -7,21 +7,22 @@ freq = sys.argv[1]
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Connect the socket to the port where the server is listening
-server_address = (127.0.0.1, 10000)
-print >>sys.stderr, 'connecting to %s port %s' % server_address
+server_address = ("127.0.0.1", 10000)
+print ('connecting to port ', server_address,file=sys.stderr)
 sock.connect(server_address)
+
+
 
 try:
 
     # Send data
     message = "clignote "+str(freq)
-    print ("sending ",message)
-    sock.sendall(message)
+    print ('sending ', message,file=sys.stderr)
+    sock.sendall(message.encode("Utf8"))
 
 except Exception as ex:
-    print ex
-    raw_input()
+    print (ex)
 
 finally:
-    print >>sys.stderr, 'closing socket'
+    print ('closing socket',file=sys.stderr)
     sock.close()

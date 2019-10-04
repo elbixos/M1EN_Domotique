@@ -54,7 +54,6 @@ while True:
     if clignote == False :
         clignote = True
 
-        time.sleep(0.1)
         monThread = threading.Thread(target=clignoter, args=(ledpin,))
         monThread.start()
 
