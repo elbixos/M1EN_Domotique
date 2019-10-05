@@ -1858,7 +1858,7 @@ python3 clientLed2.py eteindre
 Pour cela, le code php est maintenant :
 ```
 <?php
-  if (isset($_POST["clignote"]) || isset($_POST["eteind"])){
+  if (isset($_POST["clignote"]) || isset($_POST["eteindre"])){
 	   if (isset($_POST["clignote"])){
         $frequence = $_POST["freq"];
 	      $command = escapeshellcmd("python3 clientLed2.py clignote $frequence");
