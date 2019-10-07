@@ -12,4 +12,5 @@
 ## Cours Complet
 
 Il existe aussi une version complète du cours qui réunit tous les cours
-- [format md](../cours.md)
+- [format md](cours.md)
+- [format pdf](cours.pdf)
