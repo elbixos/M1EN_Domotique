@@ -11,12 +11,12 @@ Vous aurez peut être besoin :
 
     - Vous pourriez trouver utile de disposer des [fichiers exemples du cours](Sources/index.md)
 
-    - l'ensemble du cours est disponible en un seul document [ici](cours.md) ou cette version [en pdf](cours.pdf).
+    - l'ensemble du cours est disponible en un seul document [ici](Cours/cours.md) ou cette version [en pdf](Cours/cours.pdf).
 
 
 - Apprendre les rudiments d'algorithmique et de programmation en python ?
     - Vous trouverez un cours un peu plus complet içi :
-    [https://elbixos.github.io/Inge1_Algo/](https://elbixos.github.io/Inge1_Algo/)
+    [https://elbixos.github.io/Inge1_Algo/](https://elbixos.github.io/Inge1_AlgO/)
 
 
 Logiquement, en suivant le plan du cours, vous devriez vous en sortir.

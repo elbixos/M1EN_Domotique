@@ -17,5 +17,5 @@ echo "---------------"
 echo "Liste des fichiers du cours complet"
 echo ""
 echo $LISTE
-cat $LISTE > ../cours.md
+cat $LISTE > cours.md
 echo "---------------"
