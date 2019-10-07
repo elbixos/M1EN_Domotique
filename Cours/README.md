@@ -11,7 +11,7 @@ Vous aurez peut être besoin :
 
     - Vous pourriez trouver utile de disposer des [fichiers exemples du cours](Sources/index.md)
 
-    - l'ensemble du cours est disponible en un seul document [ici](cours.md).
+    - l'ensemble du cours est disponible en un seul document [ici](cours.md) ou cette version [en pdf](cours.pdf).
 
 
 - Apprendre les rudiments d'algorithmique et de programmation en python ?
