@@ -449,3 +449,9 @@ Le code complet du script php est ici :
 Le code complet du client python est ici : [../Sources/clientLed.py](../Sources/clientLed2.py)
 
 Le code complet du serveur python est ici : [../Sources/serverLed.py](../Sources/serverLed2py)
+
+### Déportons le serveur sur une autre machine
+
+Les sockets nous permettent de placer notre serveur qui fait clignoter
+la led sur une autre machine que celle qui gère le serveur Web.
+Il suffit de changer le numéro IP de la machine à contacter par le client.
