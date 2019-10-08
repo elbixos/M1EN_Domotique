@@ -42,7 +42,7 @@ puisque son nom est *useLed.php* et qu'il appelle le fichier
 python *clientLed.py*. J'ai également ajouté un titre de niveau 1
 dans la page page (Gestion de Led)
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +79,7 @@ un nombre.
 
 Voici le code du formulaire, qui remplace l'ancien :
 
-```
+```html
 <form action="useLed.php" method="post">
 
   <p>
@@ -127,7 +127,7 @@ if (isset($_POST["submit"])){
 Pour vérifier, on va faire un programme python *clientLed.py* tout bête qui
 affiche la valeur du paramètre avec lequel il est lancé.
 
-```
+```python
 import sys
 
 freq = sys.argv[1]
@@ -148,7 +148,7 @@ Commencons par dire, dans le fichier PHP, que le navigateur doit récuperer
 ce fichier pour la mise en page. Ceci se fait dans la balise *head*,
 en ajoutant la ligne suivante :
 
-```
+```html
  <link rel="stylesheet" href="styleM1.css" />
 ```
 
@@ -163,7 +163,7 @@ Par exemple : Si je veux mettre un fond noir sur toute ma page,
 je dois selectionner la balise *body*, et donner à la propriété
 *background-color* la valeur *black* (ou *#000000*).
 Dans mon CSS, j'écrirais :
-```
+```css
 body
 {
     background-color: black;  /* Le fond de la page sera noir */
@@ -186,7 +186,7 @@ programme qui affiche des choses.
 
 L'idée du clignotement est la suivante :
 
-```
+```python
 import time
 
 clignote = True
@@ -200,7 +200,7 @@ while clignote:
 Si l'on veut prendre en compte une valeur passée
 de fréquence, cela deviendrait :
 
-```
+```python
 import time
 
 freq = 1 # en Hz
@@ -219,7 +219,7 @@ Disons que l'on veuille changer la fréquence quand l'utilisateur
 tape une nouvelle valeur au clavier...
 cette partie du code serait :
 
-```
+```python
 print("Entrez la fréquence")
 freq = float(input());
 ```
@@ -231,7 +231,7 @@ arrivées de demande de changement de fréquence (pas dans le cas du clavier,
 mais si cela venait du réseau, oui)
 
 Le code qui suit **ne permet donc pas** de clignoter :
-```
+```python
 import time
 
 freq = 1 # en Hz
@@ -265,7 +265,7 @@ Cette fonction utilise les **variables globales** suivantes :
 - clignote (boolean)
 - freq (un float)
 
-```
+```python
 def clignoter():
   while clignote:
       t = 1/freq
@@ -280,18 +280,18 @@ qui exécute cette fonction *clignoter*.
 Le programme principal reste donc libre de faire autre chose...
 
 On définit le thread à créer comme suit :
-```
+```python
 monThread = threading.Thread(target=clignoter)
 ```
 On le lance comme cela.
-```
+```python
 monThread.start()
 ```
 
 Voici donc un premier programme complet,
 qui clignote, tout en affichant d'autres choses.
 
-```
+```python
 # -*- coding: utf-8 -*-
 import time
 import threading
@@ -324,7 +324,7 @@ se terminera avec la fonction *clignoter*.
 
 Voici le code du programme principal seul :
 
-```
+```python
 freq = 0.5 # en Hz
 clignote = True
 
@@ -343,7 +343,7 @@ except (KeyboardInterrupt, SystemExit):
 
 Il ne reste plus qu'a prendre en compte les choix de l'utilisateur,
 c'est facile. Voici le code du programme complet :
-```
+```python
 # -*- coding: utf-8 -*-
 import time
 import threading
@@ -381,7 +381,7 @@ except (KeyboardInterrupt, SystemExit):
 On transforme ceci un petit peu...
 Il suffit d'injecter le code de cligntement des leds dans notre fonction.
 On pourrait faire ceci :
-```
+```python
 def clignoter():
   broche = 8
   GPIO.setmode(GPIO.BOARD)  
@@ -411,7 +411,7 @@ Je pourrais faire de broche une variable globale mais c'est moche
 
 Je vais donc passer ce numéro de broche à ma fonction clignoter, qui devient :
 
-```
+```python
 def clignoter(broche):
   GPIO.setmode(GPIO.BOARD)  
   GPIO.setup(broche, GPIO.OUT, initial=GPIO.LOW)
@@ -433,7 +433,7 @@ qui execute la fonction *clignoter* en lui passant le numéro de broche
 comme argument.
 Dans mon programme principal, je vais donc trouver ceci :
 
-```
+```python
 ledpin = 8
 GPIO.setmode(GPIO.BOARD)                        # Use physical pin numbering
 GPIO.setup(ledpin, GPIO.OUT, initial=GPIO.LOW)
