@@ -243,7 +243,7 @@ Le code complet est ici : [../Sources/turnOn1s.py](../Sources/turnOn1s.py).
 
 On appelle ce programme depuis une page php dont voici le code :
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -384,7 +384,7 @@ ce code en
 Voici le code complet de la page
 [../Sources/startForm.php](../Sources/startForm.php)
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -409,8 +409,8 @@ toujours sur la même page.
 Notre formulaire va tenir dans la page *startForm2.php*
 et son traitement sera fait aussi par le fichier *startForm2.php*.
 Pour cela, on modifie un peu le code précédent
-```
-  <form action="startForm.php" method="post">
+```html
+  <form action="startForm2.php" method="post">
 ```
 
 Puis, il faut distinguer deux cas :
@@ -428,7 +428,7 @@ La donnée associée au bouton submit est contenue dans *$\_POST["submit"]*
 caractères vide.
 
 On peut donc écrire facilement le code suivant :
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
