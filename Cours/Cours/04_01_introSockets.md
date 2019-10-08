@@ -42,7 +42,7 @@ puisque son nom est *useLed.php* et qu'il appelle le fichier
 python *clientLed.py*. J'ai également ajouté un titre de niveau 1
 dans la page page (Gestion de Led)
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +79,7 @@ un nombre.
 
 Voici le code du formulaire, qui remplace l'ancien :
 
-```
+```html
 <form action="useLed.php" method="post">
 
   <p>
@@ -127,7 +127,7 @@ if (isset($_POST["submit"])){
 Pour vérifier, on va faire un programme python *clientLed.py* tout bête qui
 affiche la valeur du paramètre avec lequel il est lancé.
 
-```
+```python
 import sys
 
 freq = sys.argv[1]
