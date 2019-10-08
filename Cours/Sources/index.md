@@ -7,6 +7,7 @@
 - [blinkPwm02.py](./blinkPwm02.py)
 - [blinkPwm03.py](./blinkPwm03.py)
 - [blinkPwm04.py](./blinkPwm04.py)
+- [checkIP.py](./checkIP.py)
 - [client1.py](./client1.py)
 - [clientLed2.py](./clientLed2.py)
 - [clientLed.py](./clientLed.py)
