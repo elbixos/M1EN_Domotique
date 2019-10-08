@@ -236,8 +236,3 @@ On peut donc écrire facilement le code suivant :
 
 Voici le code complet de la page
 [../Sources/startForm2.php](../Sources/startForm2.php)
-
-### Rendons cela joli !
-
-On fera des CSS pour améliorer l'aspect visuel.
-Mais je n'ai pas eu le temps.
