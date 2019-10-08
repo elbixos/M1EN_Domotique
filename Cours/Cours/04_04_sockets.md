@@ -143,8 +143,8 @@ Puis il peut envoyer des informations au serveur (ou en recevoir)
 ```python
 message = 'hey, je parle dans une socket.'
 print ('sending ' message)
-```
 sock.sendall(message)
+```
 
 Enfin, quand il a fini, il ferme la connection
 ```python
