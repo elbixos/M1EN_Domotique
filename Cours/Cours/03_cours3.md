@@ -123,7 +123,7 @@ qui se ferme avec le code
 ```
 
 Voyons donc le contenu de cette page :
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -185,7 +185,7 @@ Le code complet est ici : [../Sources/test.py](../Sources/test.py)
 
 Il est possible de le lancer depuis PHP, avec ce code :
 
-```python
+```html
 <!DOCTYPE html>
 <html>
 <head>
