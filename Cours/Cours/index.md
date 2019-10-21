@@ -2,3 +2,4 @@
 - [02_cours2.md](./02_cours2.md)
 - [03_cours3.md](./03_cours3.md)
 - [04_cours4.md](./04_cours4.md)
+- [05_cours5.md](./05_cours5.md)

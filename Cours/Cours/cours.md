@@ -2255,11 +2255,13 @@ Il suffit de changer le numéro IP de la machine à contacter par le client.
 
 ### Définitions et formalisation
 
+#### Serveur et Objets connectés.
+
 Au cours de ces expériences, nous avons finalement mis en place la plupart
 des outils utilisés en domotique réelle :
 
 - un serveur en charge de centraliser les opérations :
-c'est notre Raspberry pi hébergeant le serveur Web
+c'est notre Raspberry pi hébergeant le serveur Web.
 
 - un logiciel capable de recevoir les commandes des utilisateurs
 (c'est le serveur Web)
@@ -2267,22 +2269,30 @@ c'est notre Raspberry pi hébergeant le serveur Web
 - des objets distants connectés sur lesquels le serveur envoie des commandes
 (c'est notre second Raspberry Pi)
 
+#### Protocole de communication
+
 Pour la communication entre le serveur et les objets connectés, nous avons en fait défini un **protocole**.
 Ce protocole de communication définit comment sont faites les communications
 et de quoi elles sont composées.
 
+Notre protocole est composé de plusieurs couches (je vais simplifier éhontément)
 
+- une **couche application** : qui définit quelles commandes sont possibles.
+Dans notre cas :
+    - il n'y a que deux commandes dans le sens serveur -> objet : *eteind* ou *clignote*. Dans le cas de cette
+    dernière commande, celle ci doit aussi spécifier à quelle fréquence l'objet
+    doit clignoter, sous la forme d'une chaine de caractères telle que :
+    *clignote 0.5*
+    - l'objet connecté ne répond rien au serveur, qui ne sait jamais dans quel
+    état est l'objet qu'il gère.
 
-Notre protocole à nous :
-- s'appuie sur le wifi (ou le filaire) : des sockets **TCP**
-- ne prévoit que deux commandes : *eteind* ou *clignote*. Dans le cas de cette
-dernière commande, celle ci doit aussi spécifier à quelle fréquence l'objet
-doit clignoter, sous la forme d'une chaine de caractères telle que :
-*clignote 0.5*
-- l'objet connecté ne répond rien au serveur, qui ne sait jamais dans quel
-état est l'objet qu'il gère.
+- ces commandes sont envoyées par le biais de la **couche Réseau**. Pour nous,
+ce sont les sockets **TCP**. Celles ci s'assurent que les données sont bien envoyées et réceptionnées. A chaque envoi, l'envoyeur recoit par exemple des accusés de réception du recepteur. Les commandes de l'application sont donc encapsulées dans un message plus complexe comprenant des échanges entre les deux entités en contact.
 
-### Améliorations et variantes possibles
+- Ces échanges sont effectués via une **couche physique** sur laquelle circulent réellement les messages. Dans notre cas, il peut s'agir d'echanges par des **cables réseaux** ou du **wifi**. Ceci est complètement invisible pour nous
+car pris en charge par la couche Réseau.
+
+#### Améliorations et variantes possibles
 
 Pour améliorer, on pourrait envisager plusieurs pistes :
 - Donner de nouvelles possibilités aux objets, comme allumer une led avec une
@@ -2315,6 +2325,40 @@ Elles se distinguent par :
 Une des plus utilisées et qui soit liée au monde du libre est **Jeedom**.
 Nous verrons sans doute en TP comment l'utiliser sur des appareils
 plus complexes qu'une LED.
+
+### Quelques protocoles utilisés en domotique
+
+Ces protocoles se distinguent essentiellement par :
+- les commandes permises par la couche application
+- la couche physique de transmission
+
+
+#### Protocole Z-Wave
+(repompé sur [https://fr.wikipedia.org/wiki/Z-Wave](https://fr.wikipedia.org/wiki/Z-Wave) )
+
+Z-Wave communique en utilisant une technologie radio de faible puissance dans la bande de fréquence de 868 MHz. Ces échanges consomment beaucoup moins que
+le wifi, qui est prévu pour des échanges haut débit.
+La portée des échanges est évaluée à 50m.
+
+Pour communiquer, deux périphériques doivent être « inclus » dans le même réseau Z-Wave. Z Wave peut connecter jusqu'a 232 appareils dans un même réseau.
+
+Un intérêt notable de Z-Wave est la capacité, pour un équipement, à servir de relais vers d'autres points. Ainsi, on peut mailler un batiment d'objet qui serviront de relais vers le serveur (en plus de leur fonction domotique)
+
+Z-Wave permet de préciser le type d'équipement avec la notion de classes (exemples : interrupteur binaire, capteur binaire, capteur multi-niveaux, moteur multi-niveaux, thermostat, alarme, ...).
+
+Ainsi, les équipements s'enregistrent auprès du serveur en précisant leur classe, ce qui permet au serveur de proposer des interfaces adaptées à l'utilisateur.
+
+#### Autres protocoles
+on trouve aussi :
+- Enocean
+- ZigBee
+- 6LoWPAN
+- Chacon DIO
+
+Pour certains de ces protocoles (Enocean, Chacon DIO),
+le serveur centralisé n'est pas nécessaire.
+On peut ainsi connecter un interrupteur à une lampe sans avoir
+besoin de serveur centralisé pour régler les actions à effectuer.
 ## Quelques liens externes concernant python.
 
 Le problème quand on enseigne l'informatique (ou quoi que ce soit d'autre), est d'adapter son discours a son public. Ce que je propose dans ce cours est un kit de survie pour l'algorithmique et la programmation utile pour tout ingénieur.
