@@ -5,6 +5,7 @@
 - [Cours2](02_cours2.md)
 - [Cours3](03_cours3.md)
 - [Cours4](04_cours4.md)
+- [Cours5](05_cours5.md)
 
 - [Liens utiles](98_liens.md)
 
