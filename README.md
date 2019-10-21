@@ -18,5 +18,17 @@ Pour le moment, j'ai rédigé :
   - SSH
   - PWM (en cours)
 
-A faire :
-Ajouter le plan du prochain cours.
+- Le Cours 3
+  - Appli Web pour faire clignoter une led
+  - Apache
+  - PHP, HTML
+  - python
+
+- Le Cours 4 : Amélioration de l'appli web
+  - CSS
+  - Threads
+  - sockets
+
+- Le Cours 5 : Débriefing de ces Cours
+  - formalisations
+  - protocoles existants
