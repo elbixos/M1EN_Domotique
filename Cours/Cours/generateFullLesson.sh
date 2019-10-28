@@ -11,6 +11,7 @@ source generateChapter.sh 2
 source generateChapter.sh 3
 source generateChapter.sh 4
 source generateChapter.sh 5
+source generateChapter.sh 6
 
 
 ## generation du fichier complet.
