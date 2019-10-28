@@ -29,3 +29,9 @@ pip install -r requirements.txt
 ```
 python demo.py
 ```
+Pour visualiser la démonstration, le programme demo.py crée un serveur Web
+qui écoute le port 8000 en local. Vous pouvez donc observer la démo en cours
+avec votre navigateur à l'adresse [http://localhost:8000/](http://localhost:8000/)
+
+Vous devriez voir quelque chose comme ceci :
+![demo mosaik](demoMosaik.png)
