@@ -1,37 +1,23 @@
-import itertools
-import random
-import webbrowser
+# simulator_mosaik.py
+"""
+Mosaik interface for the models.
 
-from mosaik.util import connect_randomly, connect_many_to_one
-import mosaik
+"""
+import mosaik_api
 
+import simulator
 
-sim_config = {
-    'CSV': {
-        'python': 'mosaik_csv:CSV',
+# Sim config. and other parameters
+SIM_CONFIG = {
+    'ModelBC': {
+        'python': 'simulatorModelBC:SimulatorModelBC',
     },
-    'DB': {
-        'cmd': 'mosaik-hdf5 %(addr)s',
-    },
-    'HouseholdSim': {
-        'python': 'householdsim.mosaik:HouseholdSim',
-        # 'cmd': 'mosaik-householdsim %(addr)s',
-    },
-    'PyPower': {
-        'python': 'mosaik_pypower.mosaik:PyPower',
-        # 'cmd': 'mosaik-pypower %(addr)s',
-    },
-    'WebVis': {
-        'cmd': 'mosaik-web -s 0.0.0.0:8000 %(addr)s',
+    'Collector': {
+        'cmd': 'python collector.py %(addr)s',
     },
 }
+END = 10 * 60  # 10 minutes
 
-START = '2014-01-01 00:00:00'
-END = 31 * 24 * 3600  # 1 day
-PV_DATA = 'data/pv_10kw.csv'
-PROFILE_FILE = 'data/profiles.data.gz'
-GRID_NAME = 'demo_lv_grid'
-GRID_FILE = 'data/%s.json' % GRID_NAME
 
 
 def main():
@@ -42,40 +28,40 @@ def main():
     world.run(until=END)  # As fast as possilbe
     # world.run(until=END, rt_factor=1/60)  # Real-time 1min -> 1sec
 
+def Generateur():
+    while
 
 def create_scenario(world):
     # Start simulators
-    pypower = world.start('PyPower', step_size=15*60)
-    hhsim = world.start('HouseholdSim')
-    pvsim = world.start('CSV', sim_start=START, datafile=PV_DATA)
+    pypower = world.start('ModelBC')
 
     # Instantiate models
     grid = pypower.Grid(gridfile=GRID_FILE).children
-    houses = hhsim.ResidentialLoads(sim_start=START,
-                                    profile_file=PROFILE_FILE,
-                                    grid_name=GRID_NAME).children
-    pvs = pvsim.PV.create(20)
+    profile = []
+    for i in range(1000):
+        profile.append(randint(0, 100))
+    BCInstance = ModelBC(1, profile)
 
     # Connect entities
-    connect_buildings_to_grid(world, houses, grid)
-    connect_randomly(world, pvs, [e for e in grid if 'node' in e.eid], 'P')
+    connect_buildings_to_grid(world, BCInstance, grid)
+  #  connect_randomly(world, pvs, [e for e in grid if 'node' in e.eid], 'P')
 
     # Database
-    db = world.start('DB', step_size=60, duration=END)
-    hdf5 = db.Database(filename='demo.hdf5')
-    connect_many_to_one(world, houses, hdf5, 'P_out')
-    connect_many_to_one(world, pvs, hdf5, 'P')
+    #db = world.start('DB', step_size=60, duration=END)
+    #hdf5 = db.Database(filename='demo.hdf5')
+    #connect_many_to_one(world, houses, hdf5, 'P_out')
+    #connect_many_to_one(world, pvs, hdf5, 'P')
 
-    nodes = [e for e in grid if e.type in ('RefBus, PQBus')]
-    connect_many_to_one(world, nodes, hdf5, 'P', 'Q', 'Vl', 'Vm', 'Va')
+    #nodes = [e for e in grid if e.type in ('RefBus, PQBus')]
+    #connect_many_to_one(world, nodes, hdf5, 'P', 'Q', 'Vl', 'Vm', 'Va')
 
-    branches = [e for e in grid if e.type in ('Transformer', 'Branch')]
-    connect_many_to_one(world, branches, hdf5,
-                        'P_from', 'Q_from', 'P_to', 'P_from')
+    #branches = [e for e in grid if e.type in ('Transformer', 'Branch')]
+    #connect_many_to_one(world, branches, hdf5,
+    #                    'P_from', 'Q_from', 'P_to', 'P_from')
 
     # Web visualization
     webvis = world.start('WebVis', start_date=START, step_size=60)
-    webvis.set_config(ignore_types=['Topology', 'ResidentialLoads', 'Grid',
+    webvis.set_config(ignore_types=['Topology', 'BCInstances', 'Grid',
                                     'Database'])
     vis_topo = webvis.Topology()
 
