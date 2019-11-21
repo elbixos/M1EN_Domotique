@@ -73,7 +73,7 @@ Vous devriez voir quelque chose comme ceci :
 ### Les TPS
 
 Les énoncés des TP sont accessible ci dessous :
-- [../TP/TP1.md](TP1 Mosaik)
+- [../../TP/TP1.md](TP1 Mosaik)
 ___
 Vous pouvez repartir vers le [Sommaire](99_sommaire.md)
 
