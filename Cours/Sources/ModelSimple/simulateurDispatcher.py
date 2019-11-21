@@ -24,10 +24,10 @@ class ModelDispatcher:
         self.Iproduction = 0
         self.Iconsommation = 0
 
-    def step(self, time, Iproduction, Iconsommation):
+    def step(self, time):
         """Perform a simulation step by adding *delta* to *val*."""
-        self.Oequilibre = Iproduction-Iconsommation
-        print('ModeleDispatcher Step - Oequilibre : %f - Iconsommation : %f' %(self.Oequilibre, Iconsommation))
+        self.Oequilibre = self.Iproduction-self.Iconsommation
+        #print('ModeleDispatcher Step - Oequilibre : %f - Iconsommation : %f' %(self.Oequilibre, Iconsommation))
 
 
 class SDispatcher(mosaik_api.Simulator):
@@ -62,19 +62,19 @@ class SDispatcher(mosaik_api.Simulator):
         if inputs != {}:
             for eid, attrs in inputs.items():
                 #eid : id de l'entite concernee
-                Iproduction = 0
-                Iconsommation = 0
+                model_idx = self.entities[eid]
+                self.entites[model_idx].Iproduction = 0
+                self.entites[model_idx].Iconsommation = 0
                 for attr, values in attrs.items(): #attr : l'attribut, values : les valeurs sous la forme liste de ('src':val)
                     # a priori deux tours de boucles un pour la conso un pour la production
-                    model_idx = self.entities[eid]
                     if attr=="Iconsommation":
-                        Iconsommation = sum(values.values()) # somme les consommations des elements
+                        self.entites[model_idx].Iconsommation = sum(values.values()) # somme les consommations des elements
                     if attr=="Iproduction":
-                        Iproduction = sum(values.values()) # somme les productions des elements
-                    print('Dispatcher Step %d attr:%s - Src/val : %s ' %(time,attr,values))
-                self.entites[model_idx].step(time,Iproduction,Iconsommation)
-        else:
-            self.Oequilibre = 0
+                        self.entites[model_idx].Iproduction = sum(values.values()) # somme les productions des elements
+                   # print('Dispatcher Step %d attr:%s - Src/val : %s ' %(time,attr,values))
+
+        for model in self.entites:
+            model.Oequilibre = 0
 
         return time + 60  # Step size is 1 minute
 

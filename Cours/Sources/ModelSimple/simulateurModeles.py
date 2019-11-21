@@ -12,12 +12,12 @@ META = {
             'params': [''],
             'attrs': ['Iequilibre', 'Oconsommation'],
         },
-        'ModelBC': {
+        'ModelBC': { # Modèle inutile, pour les blinds on peut connecter directement un profil CSV au dispatcher en le connectant sur Iconso ou Iprod
             'public': True,
             'params': [''],
-            'attrs': ['Oconsommation'],
+            'attrs': ['Iconsommation', 'Oconsommation'],
         },
-        'ModelBP': {
+        'ModelBP': { # Modèle inutile, pour les blinds on peut connecter directement un profil CSV au dispatcher en le connectant sur Iconso ou Iprod
             'public': True,
             'params': [''],
             'attrs': ['Oproduction'],
@@ -35,6 +35,8 @@ META = {
 
     },
 }
+
+MAX_VAL = 10
 
 import random
 
@@ -55,8 +57,8 @@ class ModelCA:
         diff = self.Iproduction-self.Iconsommation
         if diff <0 : #Trop de consommation
             if -diff<self.Icharge: # il y a plus de batterie que d energie necessaire
-                diff = 0 #plus d energie necessaire
                 self.Ocharge = diff #on decharge la batterie de diff (negatif)
+                diff = 0  # plus d energie necessaire
             else: #il y a moins de batterie que d energie necessaire
                 diff = diff+self.Icharge #on reduit l'energie necessaire
                 self.Ocharge = -self.Icharge # on décharge toute la batterie
@@ -89,10 +91,9 @@ class ModelBC:
     def __init__(self,start=0, datafile=None):
         self.Oconsommation = 0
 
-
     def step(self, time):
         """Perform a simulation step by adding *delta* to *val*."""
-        self.Oconsommation = random.random()
+        self.Oconsommation = random.random()*MAX_VAL
         #print('ModeleBC Step - Iequilibre : %f - Oconsommation : %f' %(Iequilibre, self.Oconsommation))
 
 
@@ -103,7 +104,7 @@ class ModelBP:
 
     def step(self, time):
         """Perform a simulation step by adding *delta* to *val*."""
-        self.Oproduction = random.random()
+        self.Oproduction = random.random()*MAX_VAL
         #print('ModeleBC Step - Iequilibre : %f - Oproduction : %f' %(Iequilibre, self.Oproduction))
 
 
@@ -161,11 +162,13 @@ class simulateur(mosaik_api.Simulator):
 
     def step(self, time, inputs):
         # Get inputs
+        #print(inputs)
         if inputs != {}:
             for eid, attrs in inputs.items():
                 #eid : id de l'entite destination concernee
                 model_idx = self.entities[eid]
-                Iequilibre = Iconsommation = Iproduction = Icharge = 0
+                #print(eid)
+                self.entites[model_idx].Iequilibre = self.entites[model_idx].Iconsommation = self.entites[model_idx].Iproduction = self.entites[model_idx].Icharge = 0
                 for attr, values in attrs.items(): #attr : l'attribut, values : les valeurs sous la forme liste de ('src':val)
                     if attr=='Iequilibre':
                         self.entites[model_idx].Iequilibre = sum(values.values()) # a priori il n'y a qu'une seule valeur provenant du dispatcher
@@ -175,16 +178,14 @@ class simulateur(mosaik_api.Simulator):
                         self.entites[model_idx].Iproduction = sum(values.values())
                     if attr == 'Icharge':
                         self.entites[model_idx].Icharge = sum(values.values())
-                    #print('Simulateur ODC Step %d - Src : %s - val : %f' %(time,values.keys,Iequilibre))
-                self.entites[model_idx].step(time)
-        else:
-            for entite in self.entites:
-                entite.step(time)
+                    #print('Simulateur ODC Step %d - Src : %s - val : ' %(time,values.keys))
+        for entite in self.entites:
+            entite.step(time)
 
         return time + 60  # Step size is 1 minute
 
     def get_data(self, outputs):
-        print('Outputs:%s' %outputs)
+        #print('Outputs:%s' %outputs)
         models = self.entites
         data = {}
         for eid, attrs in outputs.items():
