@@ -30,34 +30,35 @@ enough energy for a sustained operation and only taking energy from
 the surrounding grids when the demand exceeds the power production
 capacity. This allows moving power production closer to the
 consumers and promotes renewable energy production
-## Installation de mosaik et des simulateurs
 
-### Creation d'un environnement virtuel
+### Installation de mosaik et des simulateurs
+
+#### Creation d'un environnement virtuel
 
 ```
 python3 -m venv venv
 venv\Script\activate
 ```
 
-### Installation des packages dans cet environnement
+#### Installation des packages dans cet environnement
 
 ```
 pip install mosaik numpy scipy h5py
 ```
 
-### Recupération des Sources
+#### Recupération des Sources
 
 ```
 git clone https://git@bitbucket.org/mosaik/mosaik-demo.git
 ```
 
-### Installation des packages supplémentaires
+#### Installation des packages supplémentaires
 ```
 cd mosaik-demo/
 pip install -r requirements.txt
 ```
 
-### lancement de la démo
+#### lancement de la démo
 ```
 python demo.py
 ```
@@ -68,6 +69,11 @@ avec votre navigateur à l'adresse [http://localhost:8000/](http://localhost:800
 Vous devriez voir quelque chose comme ceci :
 ![demo mosaik](demoMosaik.png)
 
+
+### Les TPS
+
+Les énoncés des TP sont accessible ci dessous :
+- [../TP/TP1.md](TP1 Mosaik)
 ___
 Vous pouvez repartir vers le [Sommaire](99_sommaire.md)
 
