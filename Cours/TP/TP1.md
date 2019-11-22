@@ -225,3 +225,22 @@ Ceci devrait vous donner quelque chose comme ceci (et nous sommes contents).
 ## Second programme
 
 Copiez le code de *TP1_0.py* dans un second fichier (*TP1_1.py*) dans lequel nous allons travailler.
+
+### Objectifs
+
+Nous allons créer un réseau un peu plus complexe, contenant
+- 1 Dispatcher.
+- 1 ConsomActeur relié à :
+    - 1 Consommateur aveugle, dont le profil est déterministe.
+    - 1 Producteur aveugle, dont le profil est déterministe.
+    - 1 Batterie controlable
+
+### Récupération des factoryModels.
+
+A partir du programme précédent, nous disposons déja des factoryModels
+correspondant à :
+- 1 consommateur Aveugle
+- 1 producteur Aveugle
+- 1 Dispatcher
+
+Il nous manque les factorymodels correspondant au ConsomActeur
