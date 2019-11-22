@@ -217,3 +217,11 @@ Enfin, on ouvre le navigateur pour observer la visualisation Web et on lance la 
     # Run simulation
     world.run(until=END)
 ```
+
+Ceci devrait vous donner quelque chose comme ceci (et nous sommes contents).
+
+![image TP1_0](TP1_0.png)
+
+## Second programme
+
+Copiez le code de *TP1_0.py* dans un second fichier (*TP1_1.py*) dans lequel nous allons travailler.
