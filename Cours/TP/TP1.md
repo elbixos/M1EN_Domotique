@@ -303,8 +303,8 @@ Dans l'autre sens, le Dispatcher doit préciser l'équilibre qu'il
 à atteint au ConsomActor pour que celui ci puisse s'y adapter s'il le souhaite.
 
 ```python
-world.connect(entiteCA, dispatcher, ('Oconsommation','Iconsommation'))
-world.connect(dispatcher, entiteCA, ('Oequilibre','Iequilibre'), time_shifted=True, initial_data={'Oequilibre': 0})
+world.connect(entiteCA, entiteDispatcher, ('Oconsommation','Iconsommation'))
+world.connect(entiteDispatcher, entiteCA, ('Oequilibre','Iequilibre'), time_shifted=True, initial_data={'Oequilibre': 0})
 ```
 
 #### Visualisation
@@ -340,5 +340,8 @@ webvis.set_etypes({
         'max': 100,
     }, })
 ```
+
+Si on lance cette simulation, on obtient quelque chose comme ceci :
+![visu TP1_1](TP1_1.png)
 
 Bon... je teste et on verra après pour définir la stratégie du ConsomActor...
