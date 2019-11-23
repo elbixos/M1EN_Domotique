@@ -235,6 +235,9 @@ Nous allons créer un réseau un peu plus complexe, contenant
     - 1 Producteur aveugle, dont le profil est déterministe.
     - 1 Batterie controlable
 
+Il s'agira ici de définir une stratégie pour notre ConsomActor, lui permettant
+de réguler sa consommation, et de voir ce qu'il se passe pour le Dispatcher.
+
 ### Récupération des factoryModels.
 
 A partir du programme précédent, nous disposons déja des factoryModels
@@ -243,4 +246,99 @@ correspondant à :
 - 1 producteur Aveugle
 - 1 Dispatcher
 
-Il nous manque les factorymodels correspondant au ConsomActeur
+Il nous manque les factorymodels correspondant aux :
+- ConsomActeur
+- Batterie
+
+Il va donc falloir ajouter les lignes suivantes à notre programme
+(je vous laisse trouver où...)
+
+L'ensemble des modèles des entités standard (comme le ConsomActor ou la batterie)
+est dans un fichier nommé *SimulateurModels.py*. Pour des raisons pratiques,
+nous allons créer 2 factorymodels pour creer respectivement nos 2 types d'entités.
+
+```python
+factoryModeles = world.start('SimulateurModels')
+factoryBat = world.start('SimulateurModels')
+```
+
+#### Les entités
+
+Demandons donc à chaque factorymodel de nous créer une entité.
+Comme précédemment, voici les lignes à insérer, à vous de comprendre
+pourquoi, et où !
+
+On demande un ConsomActor à *factoryModeles* et une Batterie à *factoryBat*
+
+```python
+entiteCA = factoryModeles.ModelCA()
+batterie = factoryBat.Batterie()
+```
+
+#### Connection des entités entre elles
+
+Ca se complique. Il faut connecter :
+- le profil de consommation au ConsomActor
+- le profil de producation au ConsomActor
+- la batterie au ConsomActor
+
+```python
+world.connect(entitePP, entiteCA, ('P', 'Iproduction'))
+world.connect(entitePC, entiteCA, ('P', 'Iconsommation'))
+world.connect(batterie, entiteCA, ('Ocharge', 'Icharge'))
+```
+
+Le ConsomActor devant commander la charge de la batterie,
+on le connecte également à la batterie (il faut que je voie avec Enguerran ceci
+plus précisément)
+
+```python
+world.connect(entiteCA, batterie, ('Ocharge', 'Icharge'), time_shifted=True, initial_data={'Ocharge': 10})
+```
+
+Enfin, nous pouvons connecter le ConsomActor au Dispatcher.
+Le ConsomActor doit préciser sa consommation au Dispatcher.
+**Pourquoi pas sa production ???**
+Dans l'autre sens, le Dispatcher doit préciser l'équilibre qu'il
+à atteint au ConsomActor pour que celui ci puisse s'y adapter s'il le souhaite.
+
+```python
+world.connect(entiteCA, dispatcher, ('Oconsommation','Iconsommation'))
+world.connect(dispatcher, entiteCA, ('Oequilibre','Iequilibre'), time_shifted=True, initial_data={'Oequilibre': 0})
+```
+
+#### Visualisation
+
+Enfin, on connecte tout le monde à la visualisation
+
+```python
+world.connect(entiteDispatcher, vis_topo, 'Oequilibre')
+world.connect(entiteCA, vis_topo, 'Oconsommation')
+world.connect(entitePP, vis_topo, 'P')
+world.connect(entitePC, vis_topo, 'P')
+world.connect(batterie, vis_topo, 'Ocharge')
+```
+
+Et on paramètre les visualisations qui manquent :
+```python
+webvis.set_etypes({
+    'Batterie': {
+        'cls': 'load',
+        'attr': 'Ocharge',
+        'unit': 'Charge',
+        'default': 0,
+        'min': 0,
+        'max': 100,
+    }, })
+webvis.set_etypes({
+    'ModelCA': {
+        'cls': 'load',
+        'attr': 'Oconsommation',
+        'unit': 'Conso.',
+        'default': 0,
+        'min': 0,
+        'max': 100,
+    }, })
+```
+
+Bon... je teste et on verra après pour définir la stratégie du ConsomActor...

@@ -44,6 +44,8 @@ def main():
     factoryDispatcher = world.start('Dispatcher')
     factoryProfileP = world.start('CSV', sim_start=START, datafile=PROFILE_P)
     factoryProfileC = world.start('CSV', sim_start=START, datafile=PROFILE_C)
+    factoryModeles = world.start('SimulateurModels')
+    factoryBat = world.start('SimulateurModels')
 
     # Instantiate models
     print("instanciation Dispatcher")
@@ -51,11 +53,18 @@ def main():
 
 
     #creation des noeuds
+    entiteCA = factoryModeles.ModelCA()
+    batterie = factoryBat.Batterie()
     entitePP = factoryProfileP.ModelProfil()  # .create(1)
     entitePC = factoryProfileC.ModelProfil()  # .create(1)
 
-    world.connect(entitePP, entiteDispatcher, ('P', 'Iproduction'))
-    world.connect(entitePC, entiteDispatcher, ('P', 'Iconsommation'))
+    world.connect(entitePP, entiteCA, ('P', 'Iproduction'))
+    world.connect(entitePC, entiteCA, ('P', 'Iconsommation'))
+    world.connect(batterie, entiteCA, ('Ocharge', 'Icharge'))
+    world.connect(entiteCA, batterie, ('Ocharge', 'Icharge'), time_shifted=True, initial_data={'Ocharge': 10})
+
+    world.connect(entiteCA, dispatcher, ('Oconsommation','Iconsommation'))
+    world.connect(dispatcher, entiteCA, ('Oequilibre','Iequilibre'), time_shifted=True, initial_data={'Oequilibre': 0})
 
     webvis = world.start('WebVis', start_date=START, step_size=60)
     webvis.set_config(ignore_types=['Topology', 'ResidentialLoads', 'Grid', 'Database'])
@@ -63,8 +72,10 @@ def main():
 
     # On connecte les noeuds a la visualisation web
     world.connect(entiteDispatcher, vis_topo, 'Oequilibre')
+    world.connect(entiteCA, vis_topo, 'Oconsommation')
     world.connect(entitePP, vis_topo, 'P')
     world.connect(entitePC, vis_topo, 'P')
+    world.connect(batterie, vis_topo, 'Ocharge')
 
     webvis.set_etypes({
         'ModelProfil': {
@@ -84,6 +95,24 @@ def main():
             'min': -3000,
             'max': 3000,
         },})
+    webvis.set_etypes({
+        'Batterie': {
+            'cls': 'load',
+            'attr': 'Ocharge',
+            'unit': 'Charge',
+            'default': 0,
+            'min': 0,
+            'max': 100,
+        }, })
+    webvis.set_etypes({
+        'ModelCA': {
+            'cls': 'load',
+            'attr': 'Oconsommation',
+            'unit': 'Conso.',
+            'default': 0,
+            'min': 0,
+            'max': 100,
+        }, })
 
     webbrowser.open('http://localhost:8000')
     # Run simulation
