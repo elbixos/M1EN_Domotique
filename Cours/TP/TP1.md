@@ -5,7 +5,7 @@ Dans ce TP, nous allons prendre en main le simulateur de Smartgrids, pour essaye
 Toute l'installation doit déja être faite,
 et la démonstration de mosaik doit fonctionner.
 
-## Les éléments d'un simulation
+## Les éléments d'une simulation
 
 Dans une simulation, nous allons avoir différentes **entités**
 placées dans la grille. Voyons un peu les entités en présence.
@@ -279,7 +279,7 @@ batterie = factoryBat.Batterie()
 
 Ca se complique. Il faut connecter :
 - le profil de consommation au ConsomActor
-- le profil de producation au ConsomActor
+- le profil de production au ConsomActor
 - la batterie au ConsomActor
 
 ```python
@@ -288,9 +288,12 @@ world.connect(entitePC, entiteCA, ('P', 'Iconsommation'))
 world.connect(batterie, entiteCA, ('Ocharge', 'Icharge'))
 ```
 
+A chaque étape de la simulation, la batterie va envoyer au ConsomActor sa charge (Ocharge pour la batterie. Le ConsomActor recoit cette information dans Icharge).
+
 Le ConsomActor devant commander la charge de la batterie,
-on le connecte également à la batterie (il faut que je voie avec Enguerran ceci
-plus précisément)
+on le connecte également à la batterie.
+Son coefficient Ocharge correspond à son ordre à la batterie, que celle si recoit sur son propre Icharge... Si ce chiffre est positif, il demande à la batterie de se charger de la quantité correspondante.
+Si ce chiffre est négatif, il demande à la batterie de se décharger de cette quantité.
 
 ```python
 world.connect(entiteCA, batterie, ('Ocharge', 'Icharge'), time_shifted=True, initial_data={'Ocharge': 10})
