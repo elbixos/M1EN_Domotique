@@ -26,7 +26,7 @@ class ModelDispatcher:
 
     def step(self, time):
         """Perform a simulation step by adding *delta* to *val*."""
-        self.Oequilibre = abs(self.Iproduction-self.Iconsommation)
+        self.Oequilibre = self.Iproduction-self.Iconsommation
         #print("youhou")
         #print('ModeleDispatcher Step - Oequilibre : %f - Iconsommation : %f' %(self.Oequilibre, Iconsommation))
 
