@@ -63,7 +63,7 @@ def main():
     world.connect(batterie, entiteCA, ('Ocharge', 'Icharge'))
     world.connect(entiteCA, batterie, ('Ocharge', 'Icharge'), time_shifted=True, initial_data={'Ocharge': 10})
 
-    world.connect(entiteCA, entiteDispatcher, ('Oconsommation','Iconsommation'))
+    world.connect(entiteCA, entiteDispatcher, ('Oconsommation','Iconsommation'),('Oproduction','Iproduction'))
     world.connect(entiteDispatcher, entiteCA, ('Oequilibre','Iequilibre'), time_shifted=True, initial_data={'Oequilibre': 0})
 
     webvis = world.start('WebVis', start_date=START, step_size=60)
