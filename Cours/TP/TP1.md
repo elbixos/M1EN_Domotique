@@ -301,13 +301,14 @@ world.connect(entiteCA, batterie, ('Ocharge', 'Icharge'), time_shifted=True, ini
 
 Enfin, nous pouvons connecter le ConsomActor au Dispatcher.
 Le ConsomActor doit préciser sa consommation au Dispatcher.
-**Pourquoi pas sa production ???**
 Dans l'autre sens, le Dispatcher doit préciser l'équilibre qu'il
 à atteint au ConsomActor pour que celui ci puisse s'y adapter s'il le souhaite.
 
 ```python
-world.connect(entiteCA, entiteDispatcher, ('Oconsommation','Iconsommation'))
+world.connect(entiteCA, entiteDispatcher, ('Oconsommation','Iconsommation'),('Oproduction','Iproduction'))
 world.connect(entiteDispatcher, entiteCA, ('Oequilibre','Iequilibre'), time_shifted=True, initial_data={'Oequilibre': 0})
+
+
 ```
 
 #### Visualisation

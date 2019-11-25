@@ -27,8 +27,8 @@ class ModelDispatcher:
     def step(self, time):
         """Perform a simulation step by adding *delta* to *val*."""
         self.Oequilibre = abs(self.Iproduction-self.Iconsommation)
-        print("youhou")
-        print('ModeleDispatcher Step - Oequilibre : %f - Iconsommation : %f' %(self.Oequilibre, Iconsommation))
+        #print("youhou")
+        #print('ModeleDispatcher Step - Oequilibre : %f - Iconsommation : %f' %(self.Oequilibre, Iconsommation))
 
 
 class SDispatcher(mosaik_api.Simulator):
@@ -73,9 +73,10 @@ class SDispatcher(mosaik_api.Simulator):
                     if attr=="Iproduction":
                         self.entites[model_idx].Iproduction = sum(values.values()) # somme les productions des elements
                     #print('Dispatcher Step %d attr:%s - Src/val : %s '   %(time,attr,values))
+                self.entites[model_idx].step(time)
 
-        for model in self.entites:
-            model.Oequilibre = model.Iproduction - model.Iconsommation
+        #for model in self.entites:
+        #    model.Oequilibre = model.Iproduction - model.Iconsommation
             #model.Oequilibre = 0
 
         return time + 60  # Step size is 1 minute
